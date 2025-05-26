@@ -1,0 +1,17 @@
+# Bảo vệ file .htaccess
+<files .htaccess="">
+order allow,deny
+deny from all
+</files>
+
+RewriteEngine On
+
+# ErrorDocument 404$ public/404.php
+ErrorDocument 404 public/404.php
+
+
+RewriteRule ^Home$ index.php [L]
+
+
+RewriteRule ^Login$ views/login.php [L]
+
