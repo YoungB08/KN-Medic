@@ -1,7 +1,7 @@
 <?php
 class GPTDoctor
 {
-    private string $apiKey = '';
+    private string $apiKey = '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';
     private string $apiUrl = 'https://api.openai.com/v1/chat/completions';
     private string $model = 'gpt-4';
 
