@@ -150,7 +150,7 @@
             <form class="space-y-6" id="login-form" method="post">
                 <div data-id="7xq1j5ob" data-line="133-142">
                     <label for="login-email" class="block text-sm font-medium text-gray-700 mb-1" data-id="tkl4wmrd"
-                        data-line="134-134">Email or Username</label>
+                        data-line="134-134">Username</label>
                     <div class="relative" data-id="817daxjg" data-line="135-140">
                         <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
                             data-id="f05o9jnr" data-line="136-138">
@@ -158,11 +158,27 @@
                         </div>
                         <input id="login-email" type="text"
                             class="input-field pl-10 w-full px-4 py-3 border border-gray-300 focus:outline-none"
-                            placeholder="Enter your email or username" required="" data-id="6nnj3neo"
+                            placeholder="Enter your username" required="" data-id="6nnj3neo"
                             data-line="139-139">
                     </div>
                     <p class="error-message text-red-600 text-xs mt-1 hidden" data-id="nfe5gh0e" data-line="141-141">
-                        Please enter a valid email or username</p>
+                        Please enter a valid username</p>
+                </div>
+                <div data-id="7xq1j5ob" data-line="133-142">
+                    <label for="login-name" class="block text-sm font-medium text-gray-700 mb-1" data-id="tkl4wmrd"
+                        data-line="134-134">Full name</label>
+                    <div class="relative" data-id="817daxjg" data-line="135-140">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
+                            data-id="f05o9jnr" data-line="136-138">
+                            <i class="fas fa-user input-icon" data-id="p6c8sqx1" data-line="137-137"></i>
+                        </div>
+                        <input id="login-name" type="text"
+                            class="input-field pl-10 w-full px-4 py-3 border border-gray-300 focus:outline-none"
+                            placeholder="Enter your full name" required="" data-id="6nnj3neo"
+                            data-line="139-139">
+                    </div>
+                    <p class="error-message text-red-600 text-xs mt-1 hidden" data-id="nfe5gh0e" data-line="141-141">
+                        Please enter a valid username</p>
                 </div>
 
                 <div data-id="sok2kj8z" data-line="144-156">
@@ -185,18 +201,37 @@
                     <p class="error-message text-red-600 text-xs mt-1 hidden" data-id="qzgy9as3" data-line="155-155">
                         Password must contain at least 8 characters</p>
                 </div>
-
-                <div class="flex items-center justify-between" data-id="4oeh9rvw" data-line="158-164">
-                    <div class="flex items-center" data-id="k2b78gv3" data-line="159-162">
-                        <input id="remember-me" type="checkbox"
-                            class="h-4 w-4 text-red-500 focus:ring-red-500 border-gray-300 rounded" data-id="4r519r9q"
-                            data-line="160-160">
-                        <label for="remember-me" class="ml-2 block text-sm text-gray-700" data-id="9a9wls0n"
-                            data-line="161-161">Remember me</label>
+                <div data-id="7xq1j5ob" data-line="133-142">
+                    <label for="email" class="block text-sm font-medium text-gray-700 mb-1" data-id="tkl4wmrd"
+                        data-line="134-134">Email</label>
+                    <div class="relative" data-id="817daxjg" data-line="135-140">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
+                            data-id="f05o9jnr" data-line="136-138">
+                            <i class="fa-solid fa-envelope input-icon hover:text-red-500 cursor-pointer"></i>
+                        </div>
+                        <input id="email" type="email"
+                            class="input-field pl-10 w-full px-4 py-3 border border-gray-300 focus:outline-none"
+                            placeholder="Enter your email" required="" data-id="6nnj3neo"
+                            data-line="139-139">
                     </div>
-                    <a href="#" class="text-sm text-red-500 hover:underline" data-id="l1hlmvoz"
-                        data-line="163-163">Forgot password?</a>
+                    <p class="error-message text-red-600 text-xs mt-1 hidden" data-id="nfe5gh0e" data-line="141-141">
+                        Please enter a valid email</p>
                 </div>
+                <div data-id="phone-block" data-line="143-152">
+                    <label for="login-phone" class="block text-sm font-medium text-gray-700 mb-1">Số điện thoại</label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <i class="fa-solid fa-phone input-icon hover:text-green-500 cursor-pointer"></i>
+                        </div>
+                        <input id="login-phone" type="tel"
+                            class="input-field pl-10 w-full px-4 py-3 border border-gray-300 focus:outline-none"
+                            placeholder="09..." required pattern="^\+84\d{9,10}$">
+                    </div>
+                    <p class="error-message text-red-600 text-xs mt-1 hidden">
+                        Please enter a valid phone number
+                    </p>
+                </div>
+
 
                 <button id="login-submit" type="submit" class="btn-gradient w-full py-3 px-4 text-white font-semibold shadow-md"
                     data-id="2ip6j6on" data-line="166-168">
@@ -220,13 +255,15 @@
             submitBtn.prop('disabled', true).text('Đang xử lý...');
 
             $.ajax({
-                url: 'API/Login', // đường dẫn controller PHP
+                url: 'API/Register', // đường dẫn controller PHP
                 method: 'POST',
                 dataType: 'json',
                 data: {
                     username: $('#login-email').val(),
                     password: $('#login-password').val(),
-                    remember: $('#remember-me').is(':checked') ? 1 : 0
+                    email: $('#email').val(),
+                    phone: $('#login-phone').val(),
+                    name: $('#login-name').val()
                 },
                 success: function(response) {
                     console.log(response);
@@ -269,10 +306,10 @@
 
     <script data-id="hjzavewz" data-line="296-449">
         document.addEventListener('DOMContentLoaded', function() {
-            const formCard = document.querySelector('.form-card');
-            const toggleButtons = document.querySelectorAll('.form-toggle');
-            const passwordFields = document.querySelectorAll('input[type="password"]');
-            const passwordToggles = document.querySelectorAll('input[type="password"] + button');
+            formCard = document.querySelector('.form-card');
+            toggleButtons = document.querySelectorAll('.form-toggle');
+            passwordFields = document.querySelectorAll('input[type="password"]');
+            passwordToggles = document.querySelectorAll('input[type="password"] + button');
 
             // Toggle between login and register forms
             toggleButtons.forEach(button => {
@@ -284,8 +321,8 @@
             // Toggle password visibility
             passwordToggles.forEach((toggle, index) => {
                 toggle.addEventListener('click', () => {
-                    const passwordField = passwordFields[index];
-                    const icon = toggle.querySelector('i');
+                    passwordField = passwordFields[index];
+                    icon = toggle.querySelector('i');
 
                     if (passwordField.type === 'password') {
                         passwordField.type = 'text';

@@ -14,4 +14,11 @@ RewriteRule ^Home$ index.php [L]
 
 
 RewriteRule ^Login$ views/login.php [L]
+RewriteRule ^Register$ views/register.php [L]
 
+
+
+RewriteRule ^API/Login$ controllers/login.php [L]
+RewriteRule ^API/Register$ controllers/reg.php [L]
+RewriteRule ^API/SendAI-Chat$ controllers/chat.php [L]
+RewriteRule ^API/GetMessages$ controllers/get-msg.php [L]

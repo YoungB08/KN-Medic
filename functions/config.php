@@ -1,5 +1,6 @@
 
 <?php
+session_start();
 date_default_timezone_set('Asia/Ho_Chi_Minh');
 $_SESSION['session_request'] = time();
 $time = date('Y-m-d h:i:z');
@@ -13,7 +14,7 @@ class KNCMS
         if (!$this->ketnoi) {
             // mẫu config database
             // $this->ketnoi = mysqli_connect('IP HOST hoặc để mặc định localhost', 'User Database', 'Password Database', 'Database Name') or die('Vui lòng kết nối đến DATABASE');
-            $this->ketnoi = mysqli_connect('localhost', 'root', '123456', 'revo') or die('Vui lòng kết nối đến DATABASE');
+            $this->ketnoi = mysqli_connect('localhost', 'root', '123456', 'medic') or die('Vui lòng kết nối đến DATABASE');
             mysqli_query($this->ketnoi, "set names 'utf8'");
         }
     }
