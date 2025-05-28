@@ -4,7 +4,9 @@ session_start();
 date_default_timezone_set('Asia/Ho_Chi_Minh');
 $_SESSION['session_request'] = time();
 $time = date('Y-m-d h:i:z');
-$base_url = 'http://localhost/'; // Thay url web bạn
+$base_url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http");
+$base_url .= "://" . $_SERVER['HTTP_HOST'] . "/";
+
 
 class KNCMS
 {
