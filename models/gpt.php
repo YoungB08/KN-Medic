@@ -1,13 +1,13 @@
 <?php
 class GPTDoctor
 {
-    private string $apiKey = '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';
+    private string $apiKey;
     private string $apiUrl = 'https://api.openai.com/v1/chat/completions';
     private string $model = 'gpt-4';
 
     public function __construct(string $apiKey)
     {
-        $this->apiKey = $apiKey;
+        $this->apiKey = trim($apiKey); // bỏ các ký tự dư nếu có
     }
 
     public function ask(string $userMessage): string
@@ -33,7 +33,7 @@ EOD;
             CURLOPT_POST => true,
             CURLOPT_HTTPHEADER => [
                 'Content-Type: application/json',
-                'Authorization: ' . 'Bearer ' . $this->apiKey
+                'Authorization: Bearer ' . $this->apiKey
             ],
             CURLOPT_POSTFIELDS => json_encode($payload)
         ]);
@@ -42,8 +42,9 @@ EOD;
         $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         curl_close($ch);
 
-        if ($httpCode !== 200 || !$response) {
-            return '🐻 Xin lỗi, bác sĩ Gấu đang bận chút. Bạn thử lại sau nhé!';
+        if (!$response || $httpCode !== 200) {
+            // Phân tích lỗi nếu có
+            return "❌ HTTP $httpCode: " . ($response ?: 'Không có phản hồi từ API');
         }
 
         $data = json_decode($response, true);
