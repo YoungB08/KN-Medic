@@ -1,0 +1,139 @@
+<!DOCTYPE html><html lang="en" data-id="05cgtau8" data-line="1-139"><head data-id="5tm1tgzv" data-line="1-18">
+  <meta charset="UTF-8" data-id="nundevwi" data-line="2-2">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" data-id="09xjf1zf" data-line="3-3">
+  <script src="https://cdn.tailwindcss.com" data-id="zwo1zxdw" data-line="4-4"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" data-id="rrdmgsnw" data-line="5-5">
+  <script data-id="q3yrh6jj" data-line="6-17">
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#8B0000',
+            dark: '#121212',
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-dark text-gray-100" data-id="6jccveu5" data-line="19-139">
+  <div class="max-w-4xl mx-auto h-screen flex flex-col" data-id="7x277w0e" data-line="20-118">
+    <!-- Chat header -->
+    <div class="bg-black/80 py-4 px-6 border-b border-primary/30 flex items-center justify-between" data-id="mfygirw5" data-line="22-35">
+      <div class="flex items-center space-x-3" data-id="7lquuto7" data-line="23-31">
+        <div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center" data-id="91o6mjt9" data-line="24-26">
+          <i class="fas fa-user text-primary" data-id="of6l3jn7" data-line="25-25"></i>
+        </div>
+        <div data-id="wvnsslg4" data-line="27-30">
+          <h2 class="font-semibold" data-id="6uvjygy4" data-line="28-28">Chat Conversation</h2>
+          <p class="text-xs text-gray-400" data-id="djs0cdkb" data-line="29-29">Client A &amp; Client B</p>
+        </div>
+      </div>
+      <button class="text-gray-400 hover:text-white" data-id="mp56mql1" data-line="32-34">
+        <i class="fas fa-ellipsis-v" data-id="hdaocy29" data-line="33-33"></i>
+      </button>
+    </div>
+
+    <!-- Chat messages container -->
+    <div id="messages" class="flex-1 overflow-y-auto p-4 space-y-4" data-id="t6k61tdy" data-line="38-102">
+      <!-- Client A message -->
+      <div class="flex items-start" data-id="q8877rto" data-line="40-50">
+        <div class="flex-shrink-0 w-8 h-8 rounded-full bg-primary/30 flex items-center justify-center mr-3" data-id="u28d9748" data-line="41-43">
+          <span class="text-xs font-bold" data-id="o82e9ys0" data-line="42-42">A</span>
+        </div>
+        <div class="max-w-xs md:max-w-md" data-id="s12mc7x5" data-line="44-49">
+          <div class="bg-black/50 rounded-r-2xl rounded-bl-2xl px-4 py-2" data-id="m5bzodb5" data-line="45-48">
+            <p class="text-sm" data-id="6xnblnax" data-line="46-46">Hey there! How's the project coming along?</p>
+            <p class="text-xs text-gray-400 mt-1" data-id="u640dgzf" data-line="47-47">10:30 AM</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Client B message -->
+      <div class="flex items-start justify-end" data-id="ddgagmmj" data-line="53-63">
+        <div class="max-w-xs md:max-w-md" data-id="69192hua" data-line="54-59">
+          <div class="bg-gradient-to-r from-primary/80 to-primary/50 rounded-l-2xl rounded-br-2xl px-4 py-2" data-id="wpfx0t55" data-line="55-58">
+            <p class="text-sm" data-id="wo4a01kx" data-line="56-56">Going well! Just finished the initial wireframes.</p>
+            <p class="text-xs text-gray-200 mt-1" data-id="riflhw6e" data-line="57-57">10:32 AM</p>
+          </div>
+        </div>
+        <div class="flex-shrink-0 w-8 h-8 rounded-full bg-primary/70 flex items-center justify-center ml-3" data-id="vn69irxc" data-line="60-62">
+          <span class="text-xs font-bold text-white" data-id="akdow83v" data-line="61-61">B</span>
+        </div>
+      </div>
+
+      <!-- Client A message -->
+      <div class="flex items-start" data-id="z8c485qn" data-line="66-76">
+        <div class="flex-shrink-0 w-8 h-8 rounded-full bg-primary/30 flex items-center justify-center mr-3" data-id="joq2eocw" data-line="67-69">
+          <span class="text-xs font-bold" data-id="sxfqughk" data-line="68-68">A</span>
+        </div>
+        <div class="max-w-xs md:max-w-md" data-id="5bcw6w34" data-line="70-75">
+          <div class="bg-black/50 rounded-r-2xl rounded-bl-2xl px-4 py-2" data-id="tcl8w4do" data-line="71-74">
+            <p class="text-sm" data-id="hw30l0as" data-line="72-72">That's great! Can you share them with me? 😊</p>
+            <p class="text-xs text-gray-400 mt-1" data-id="ftwuty39" data-line="73-73">10:33 AM</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Client B message -->
+      <div class="flex items-start justify-end" data-id="abipikyq" data-line="79-89">
+        <div class="max-w-xs md:max-w-md" data-id="28mx402o" data-line="80-85">
+          <div class="bg-gradient-to-r from-primary/80 to-primary/50 rounded-l-2xl rounded-br-2xl px-4 py-2" data-id="0eee3o4b" data-line="81-84">
+            <p class="text-sm" data-id="1fly1lxn" data-line="82-82">Sure thing! I'll send them over shortly. Working on the prototype now.</p>
+            <p class="text-xs text-gray-200 mt-1" data-id="eaxbrm2m" data-line="83-83">10:34 AM</p>
+          </div>
+        </div>
+        <div class="flex-shrink-0 w-8 h-8 rounded-full bg-primary/70 flex items-center justify-center ml-3" data-id="ekfmsblv" data-line="86-88">
+          <span class="text-xs font-bold text-white" data-id="n3p3n8kj" data-line="87-87">B</span>
+        </div>
+      </div>
+
+      <!-- Typing indicator -->
+      <div class="flex items-start" data-id="vwalbiuh" data-line="92-101">
+        <div class="flex-shrink-0 w-8 h-8 rounded-full bg-primary/30 flex items-center justify-center mr-3" data-id="efym9n37" data-line="93-95">
+          <span class="text-xs font-bold" data-id="0llenyna" data-line="94-94">A</span>
+        </div>
+        <div class="max-w-xs md:max-w-md" data-id="b73p9fwb" data-line="96-100">
+          <div class="bg-black/50 rounded-r-2xl rounded-bl-2xl px-4 py-2" data-id="o3rwmkn0" data-line="97-99">
+            <p class="text-sm italic text-gray-400" data-id="6g6cxpft" data-line="98-98">typing...</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Input area -->
+    <div class="bg-black/80 p-4 border-t border-primary/30" data-id="8w6dk1tc" data-line="105-117">
+      <form class="flex items-center space-x-2" data-id="t819k8xv" data-line="106-116">
+        <div class="flex-1 relative" data-id="jdcsfsno" data-line="107-112">
+          <input type="text" placeholder="Type your message..." class="w-full bg-dark/70 border border-primary/30 rounded-full py-2 px-4 focus:outline-none focus:ring-1 focus:ring-primary/50" data-id="p3k65exj" data-line="108-108">
+          <button type="button" class="absolute right-3 top-2 text-gray-400 hover:text-primary" data-id="em869tww" data-line="109-111">
+            <i class="far fa-smile" data-id="gg8o7z24" data-line="110-110"></i>
+          </button>
+        </div>
+        <button type="submit" class="w-10 h-10 rounded-full bg-primary flex items-center justify-center hover:bg-primary/80 transition" data-id="gc8gx5g7" data-line="113-115">
+          <i class="fas fa-paper-plane text-white" data-id="23zmadka" data-line="114-114"></i>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <script data-id="1syig1ir" data-line="120-137">
+    // Auto-scroll to latest message
+    const messagesContainer = document.getElementById('messages');
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+    // Simple form submission handler
+    document.querySelector('form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const input = this.querySelector('input');
+      const message = input.value.trim();
+      
+      if (message) {
+        // In a real app, this would send to backend and update the UI
+        input.value = '';
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+      }
+    });
+  </script>
+
+</body></html>
