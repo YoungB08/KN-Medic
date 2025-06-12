@@ -15,6 +15,7 @@ RewriteRule ^Home$ index.php [L]
 
 RewriteRule ^Login$ views/login.php [L]
 RewriteRule ^Register$ views/register.php [L]
+RewriteRule ^ChatWithAI$ views/chat-ai.php [L]
 
 
 

@@ -2,115 +2,239 @@
 <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/models/user.php'; ?>
 <?php include $_SERVER['DOCUMENT_ROOT'] . '/includes/head.php'; ?>
 <?php include $_SERVER['DOCUMENT_ROOT'] . '/includes/nav.php'; ?>
-<?php if(UserModel::isLogin() == 0) return $KNCMS->msg_warning("Vui lòng đăng nhập", hUrl('Login'), 1000);
+<?php if (UserModel::isLogin() == 0) return $KNCMS->msg_warning("Vui lòng đăng nhập", hUrl('Login'), 1000);
 ?>
 <style>
-    @keyframes fadeInUp {
-        from {
-            opacity: 0;
-            transform: translateY(10px);
-        }
-
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
+    body {
+        background: linear-gradient(to right, #1f1f1f, #2c2c2c);
+        color: #fff;
+        font-family: 'Segoe UI', sans-serif;
     }
 
-    .message {
-        animation: fadeInUp 0.3s ease;
+    .form-card,
+    .table-card {
+        background: linear-gradient(145deg, #2a2a2a, #1e1e1e);
+        border-radius: 20px;
+        padding: 30px;
+        margin-bottom: 40px;
+        box-shadow: 0 0 25px rgba(255, 50, 50, 0.1);
+        border: 1px solid #333;
     }
 
-    .chat-container {
-        scroll-behavior: smooth;
-        overflow-y: auto;
+    .form-label {
+        color: #ccc;
     }
 
-    .message {
-        max-width: 60%;
-        /* hoặc 70% */
-        word-wrap: break-word;
+    .form-control {
+        background-color: #2e2e2e;
+        border: 1px solid #444;
+        color: #fff;
     }
 
-    .message-left {
-        align-self: flex-start;
+    .form-control:focus {
+        border-color: #e53935;
+        box-shadow: 0 0 0 0.2rem rgba(229, 57, 53, 0.3);
     }
 
-    .message-right {
-        align-self: flex-end;
+    .btn-danger {
+        background-color: #e53935;
+        border: none;
     }
 
-    .message-right {
-        background: linear-gradient(135deg, #8B0000, #a83232);
-        color: white;
+    .btn-danger:hover {
+        background-color: #c62828;
     }
 
-    .message-left {
-        background: #111;
-        color: white;
+    h2,
+    h4 {
+        color: #fff;
     }
 
-    .avatar {
-        width: 32px;
-        height: 32px;
-        border-radius: 50%;
-        background: #8B0000;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+    table {
+        color: #fff;
+    }
+
+    thead th {
+        background-color: #2d2d2d;
+        color: #e53935;
+    }
+
+    tbody tr {
+        background-color: #2a2a2a;
+        border-bottom: 1px solid #444;
+    }
+
+    .ticket-id {
         font-weight: bold;
+        color: #f44336;
     }
 
-    .chat-area {
-        height: calc(100vh - 120px);
-        /* Trừ header + search bar */
-        padding: 16px;
-        overflow-y: auto;
+    .table-card {
+        background-color: transparent;
+        background-color: #e53935;
+        text-align: center;
+    }
+
+    /* Table full width, bo tròn */
+    table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0;
+        border-radius: 20px;
+        overflow: hidden;
+        /* để bo tròn bảng */
+        box-shadow: 0 0 15px rgba(229, 57, 53, 0.4);
+        color: #fff;
+        background-color: #1a1a1a;
+    }
+
+    /* Đầu bảng nền đỏ, chữ trắng */
+    thead th {
+        background-color: #e53935;
+        color: #fff;
+        padding: 12px 15px;
+        text-align: left;
+        font-weight: 600;
+    }
+
+    /* Các ô thân bảng */
+    tbody td {
+        padding: 12px 15px;
+        border-bottom: 1px solid #333;
+    }
+
+    /* Màu nền xen kẽ cho dòng */
+    tbody tr:nth-child(odd) {
+        background-color: #222;
+    }
+
+    tbody tr:nth-child(even) {
+        background-color: #1a1a1a;
+    }
+
+    /* Khi hover dòng */
+    tbody tr:hover {
+        background-color: #e53935;
+        color: #fff;
+        cursor: pointer;
+    }
+
+    /* ticket-id màu đỏ nổi bật */
+    .ticket-id {
+        font-weight: bold;
+        color: #f44336;
+    }
+
+    /* Đảm bảo bảng bo tròn cả 4 góc */
+    thead tr:first-child th:first-child {
+        border-top-left-radius: 20px;
+    }
+
+    thead tr:first-child th:last-child {
+        border-top-right-radius: 20px;
+    }
+
+    tbody tr:last-child td:first-child {
+        border-bottom-left-radius: 20px;
+    }
+
+    tbody tr:last-child td:last-child {
+        border-bottom-right-radius: 20px;
     }
 </style>
-<div class="h-screen flex flex-col" style="width: 100%; height: 92%;" data-id="7x277w0e" data-line="20-118">
-    <!-- Chat header -->
-    <div class="bg-black/80 py-4 px-6 border-b border-primary/30 flex items-center justify-between" data-id="mfygirw5" data-line="22-35">
-        <div class="flex items-center space-x-3" data-id="7lquuto7" data-line="23-31">
-            <div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center" data-id="91o6mjt9" data-line="24-26">
-                <i class="fas fa-user text-primary" data-id="of6l3jn7" data-line="25-25"></i>
-            </div>
-            <div data-id="wvnsslg4" data-line="27-30">
-                <h2 class="font-semibold" data-id="6uvjygy4" data-line="28-28">Chat Conversation</h2>
-                <p class="text-xs text-gray-400" data-id="djs0cdkb" data-line="29-29">Client A &amp; Client B</p>
-            </div>
-        </div>
-        <button class="text-gray-400 hover:text-white" data-id="mp56mql1" data-line="32-34">
-            <i class="fas fa-ellipsis-v" data-id="hdaocy29" data-line="33-33"></i>
-        </button>
-    </div>
 
-    <!-- Chat messages container -->
-    <div id="chatMessages" class="flex-1 overflow-y-auto p-4 space-y-4" data-id="t6k61tdy" data-line="38-102">
+<div class="container py-5">
+    <h2 class="text-center mb-4">
+        <i class="fas fa-calendar-check"></i> Đặt Lịch Khám Bệnh
+    </h2>
 
-    </div>
-
-    <!-- Input area -->
-    <!-- Form chat -->
-    <div class="bg-black/80 p-4 border-t border-primary/30">
-        <form id="chatForm" class="flex items-center space-x-2" method="post">
-            <div class="flex-1 relative">
-                <input id="messageInput" type="text" placeholder="Type your message..."
-                    style="color: black;"
-                    class="w-full bg-dark/70 border border-primary/30 rounded-full py-2 px-4 focus:outline-none focus:ring-1 focus:ring-primary/50">
+    <!-- Form Đặt Lịch -->
+    <div class="form-card">
+        <form>
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <label class="form-label"><i class="fas fa-user"></i> Họ và tên</label>
+                    <input type="text" class="form-control" placeholder="Nhập họ tên bệnh nhân" required>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label"><i class="fas fa-phone"></i> Số điện thoại</label>
+                    <input type="tel" class="form-control" placeholder="Nhập số điện thoại" required>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label"><i class="fas fa-hospital-user"></i> Chuyên khoa</label>
+                    <select class="form-control" required>
+                        <option value="">-- Chọn chuyên khoa --</option>
+                        <option>Nội tổng quát</option>
+                        <option>Nhi khoa</option>
+                        <option>Tim mạch</option>
+                        <option>Da liễu</option>
+                        <option>Xét nghiệm</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label"><i class="fas fa-calendar-alt"></i> Ngày khám</label>
+                    <input type="date" class="form-control" required>
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label"><i class="fas fa-clock"></i> Giờ khám</label>
+                    <input type="time" class="form-control" required>
+                </div>
+                <div class="col-12">
+                    <label class="form-label"><i class="fas fa-notes-medical"></i> Ghi chú</label>
+                    <textarea class="form-control" rows="2" placeholder="Triệu chứng, lưu ý... (không bắt buộc)"></textarea>
+                </div>
+                <div class="col-12 text-end">
+                    <button type="submit" class="btn btn-danger px-4 mt-3"><i class="fas fa-paper-plane"></i> Gửi Yêu Cầu</button>
+                </div>
             </div>
-            <button type="submit" class="w-10 h-10 rounded-full bg-primary flex items-center justify-center hover:bg-primary/80 transition">
-                <i class="fas fa-paper-plane text-white"></i>
-            </button>
         </form>
     </div>
+
+    <!-- Danh sách lịch khám -->
+    <div class="table-card">
+        <h4 class="mb-3"><i class="fas fa-list"></i> Danh sách lịch khám</h4>
+        <div class="table-responsive">
+            <table class="table table-hover table-bordered align-middle">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Bệnh nhân</th>
+                        <th>Số điện thoại</th>
+                        <th>Chuyên khoa</th>
+                        <th>Ngày</th>
+                        <th>Giờ</th>
+                        <th>Ghi chú</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="ticket-id">#001</td>
+                        <td>Nguyễn Văn A</td>
+                        <td>0901234567</td>
+                        <td>Nhi khoa</td>
+                        <td>2025-06-01</td>
+                        <td>09:00</td>
+                        <td>Ho, sốt nhẹ</td>
+                    </tr>
+                    <tr>
+                        <td class="ticket-id">#002</td>
+                        <td>Trần Thị B</td>
+                        <td>0912345678</td>
+                        <td>Da liễu</td>
+                        <td>2025-06-03</td>
+                        <td>14:30</td>
+                        <td>Mẩn đỏ vùng mặt</td>
+                    </tr>
+                    <!-- Có thể thêm nhiều dòng nữa bằng PHP -->
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
-
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<?php require_once $_SERVER['DOCUMENT_ROOT'] . '/ajax/chat.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/models/user.php'; ?>
 
-<?php 
+
+<?php
 
 include $_SERVER['DOCUMENT_ROOT'] . '/includes/footer.php'; ?>
 

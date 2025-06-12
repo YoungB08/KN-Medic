@@ -11,7 +11,6 @@
         const message = input.value.trim();
 
         if (message) {
-            // In a real app, this would send to backend and update the UI
             input.value = '';
             messagesContainer.scrollTop = messagesContainer.scrollHeight;
         }
